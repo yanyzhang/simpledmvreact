@@ -34,22 +34,57 @@ body {
     justify-content: space-between;
     background-color: #0b5584;
     padding: 1rem;
-
+    position: relative;
 }
 
 .nav__logo {
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
-  }
+}
+
+.nav__links {
+    display: flex;
+    align-items: center;
+}
 
 .nav__link {
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
     transition: background-color 0.3s;
-  }
+}
 
+/* Responsive styles */
+@media (max-width: 768px) {
+    .nav__links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #0b5584;
+        padding: 0;
+    }
+
+    .nav__links.active {
+        display: flex;
+    }
+
+    .nav__link {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #ffffff33;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar:hover .nav__links {
+        display: flex;
+    }
+}
 /* main section */
 
 .Main {

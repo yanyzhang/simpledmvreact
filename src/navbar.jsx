@@ -1,35 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Navbar() {
-  const [menuActive, setMenuActive] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuActive(!menuActive);
-  };
-
-  const closeMenu = () => {
-    setMenuActive(false);
-  };
-
   return (
     <nav className="navbar">
       <a href="/" className="nav__logo">
         Department of Motor Vehicles
       </a>
-      <div className={`nav__links ${menuActive ? "active" : ""}`}>
-        <a href="/" className="nav__link" onClick={closeMenu}>
+      <div className="nav__links">
+        <a href="/" className="nav__link">
           Licenses, Permits & IDs
         </a>
-        <a href="/about" className="nav__link" onClick={closeMenu}>
+        <a href="/about" className="nav__link">
           Tests
         </a>
-        <a href="/services" className="nav__link" onClick={closeMenu}>
+        <a href="/services" className="nav__link">
           Schedule
         </a>
-        <a href="/contact" className="nav__link" onClick={closeMenu}>
+        <a href="/contact" className="nav__link">
           Contact
         </a>
-        <a href="/login" className="nav__link" onClick={closeMenu}>
+        <a href="/login" className="nav__link">
           MyDMV
         </a>
       </div>
