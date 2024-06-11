@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/simpledmvreact/static/css/main.b80cc085.css",
+    "main.js": "/simpledmvreact/static/js/main.12d4380b.js",
+    "index.html": "/simpledmvreact/index.html",
+    "main.b80cc085.css.map": "/simpledmvreact/static/css/main.b80cc085.css.map",
+    "main.12d4380b.js.map": "/simpledmvreact/static/js/main.12d4380b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b80cc085.css",
+    "static/js/main.12d4380b.js"
+  ]
+}
