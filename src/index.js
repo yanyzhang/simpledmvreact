@@ -5,13 +5,14 @@ import Message from "./dmvinfo";
 import Main from "./main";
 import Mainpart2 from "./mainpart2";
 import Footer from "./footer";
+import "./style.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <div className="Components">
-    <Message />
     <Navbar />
+    <Message />
     <Main />
     <Mainpart2 />
     <Footer />

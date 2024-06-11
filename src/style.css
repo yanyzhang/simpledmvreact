@@ -19,6 +19,11 @@ body {
 
 }
 
+.Message a{
+    text-decoration: none;
+    color: #0b5584;
+}
+
 .Result {
     text-transform: uppercase;
 }

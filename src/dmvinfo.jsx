@@ -1,70 +1,93 @@
-import React from "react";
-
-const date = new Date();
-const currentYear = date.getFullYear();
-console.log(currentYear);
-
-let userFname;
-let userLname;
-let birthYear;
-
-do {
-  userFname = prompt("Enter your first name");
-} while (!userFname);
-
-do {
-  userLname = prompt("Enter your last name");
-} while (!userLname);
-
-do {
-  birthYear = prompt("Enter your birth year");
-
-  if (birthYear) {
-    birthYear = Number(birthYear);
-    if (isNaN(birthYear)) {
-      alert("Please enter a valid number for your birth year.");
-    } else if (birthYear < 1920) {
-      alert("If your birth year is before 1920, visit the DMV office.");
-    } else if (birthYear > currentYear) {
-      alert(`Please enter a year between 1920 and ${currentYear}.`);
-    }
-  } else {
-    alert("Birth year is required.");
-  }
-} while (isNaN(birthYear) || birthYear < 1920 || birthYear > currentYear);
-
-let msg = {};
-
-const textColor = {
-  // color: "red",
-  backgroundColor: "lightgreen",
-};
-
-if (Number(birthYear) < currentYear - 16) {
-  msg = "Congrat! you can apply for driver's license!";
-  // change css as well
-} else {
-  msg = "Sorry! you can NOT apply for driver's license at this time!";
-}
-
-// let birthYear = 1990;
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-
-const newUser = new Array();
-newUser.push("firstvalue");
-// console.log(newUser);
-
-// textColor.backgroundColor = "lightpink";
+import React, { useState } from "react";
 
 function Message() {
+  const [showMessage, setShowMessage] = useState(false);
+  const [userFname, setUserFname] = useState("");
+  const [userLname, setUserLname] = useState("");
+  const [birthYear, setBirthYear] = useState(null);
+  const [msg, setMsg] = useState("");
+
+  const handleLinkClick = () => {
+    let fname, lname, bYear;
+    const date = new Date();
+    const currentYear = date.getFullYear();
+    const namePattern = /^[A-Za-z]+$/;
+
+    do {
+      fname = prompt("Enter your first name");
+      if (fname === null) return; // Handle cancel button
+      if (!namePattern.test(fname)) {
+        alert(
+          "Please enter a valid first name containing only alphabetic characters."
+        );
+        fname = null;
+      }
+    } while (!fname);
+
+    do {
+      lname = prompt("Enter your last name");
+      if (lname === null) return; // Handle cancel button
+      if (!namePattern.test(lname)) {
+        alert(
+          "Please enter a valid last name containing only alphabetic characters."
+        );
+        lname = null;
+      }
+    } while (!lname);
+
+    do {
+      bYear = prompt("Enter your birth year");
+      if (bYear === null) return; // Handle cancel button
+
+      if (bYear) {
+        bYear = Number(bYear);
+        if (isNaN(bYear)) {
+          alert("Please enter a valid number for your birth year.");
+        } else if (bYear < 1920) {
+          alert("If your birth year is before 1920, visit the DMV office.");
+        } else if (bYear > currentYear) {
+          alert(`Please enter a year between 1920 and ${currentYear}.`);
+        }
+      } else {
+        alert("Birth year is required.");
+      }
+    } while (isNaN(bYear) || bYear < 1920 || bYear > currentYear);
+
+    setUserFname(fname);
+    setUserLname(lname);
+    setBirthYear(bYear);
+
+    if (bYear < currentYear - 16) {
+      setMsg("Congrats! You can apply for a driver's license!");
+    } else {
+      setMsg("Sorry! You cannot apply for a driver's license at this time!");
+    }
+
+    setShowMessage(true);
+  };
+
+  const date = new Date();
+  const currentYear = date.getFullYear();
+
+  const textColor = {
+    backgroundColor: "lightgreen",
+  };
+
   return (
     <div className="Message">
-      <h3 className="Alert">Alert:</h3>
-      <p style={{ color: "black" }}>
-        {userFname.toUpperCase()} {userLname.toUpperCase()} is{" "}
-        {currentYear - birthYear} years old.
-      </p>
-      <p style={textColor}>{msg}</p>
+      <a href="#message" onClick={handleLinkClick}>
+        *Click here to see if you can apply*
+      </a>
+      {showMessage && (
+        <>
+          <h3 className="Alert">Alert:</h3>
+          <p style={{ color: "black" }}>
+            {userFname.toUpperCase()} {userLname.toUpperCase()} is{" "}
+            {currentYear - birthYear} years old.
+          </p>
+          <p style={textColor}>{msg}</p>
+        </>
+      )}
     </div>
   );
 }
